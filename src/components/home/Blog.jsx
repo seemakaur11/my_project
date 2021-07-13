@@ -6,9 +6,9 @@ import blog4 from '../../assets/images/home/blog4.jpg'
 import blog5 from '../../assets/images/home/blog5.jpg'
 import blog6 from '../../assets/images/home/blog6.jpg'
 import blog7 from '../../assets/images/home/blog7.jpg'
-import blog8 from '../../assets/images/home/blog8.jpg'
+// import blog8 from '../../assets/images/home/blog8.jpg'
 import blog9 from '../../assets/images/home/blog9.jpg'
-import blog10 from '../../assets/images/home/blog10.jpg'
+// import blog10 from '../../assets/images/home/blog10.jpg'
 
 export default class Blog extends Component{
     render () {
@@ -26,7 +26,7 @@ export default class Blog extends Component{
                 </div>
                 <div>
                     <h1 className="h1WinBlog">Top mobile website designs</h1>
-                    <h1 className="h1WinBlog"># 01. S&W Beauty</h1>
+                    <h1 className="h1WinBlog"> 01. S&W Beauty</h1>
                     <p>Part of an extensive project by renowned designers Stefan<br/> Sagmeister and Jessica Walsh, this website is a celebration of<br/> all things beautiful and the power beauty holds over us. The<br/> website lures visitors into a world of mesmerizing aesthetics,<br/> 
                     complete with information about the Beauty exhibition and<br/> book.</p>
                     <p>The Beauty website employs a cohesive visual language<br/> throughout. Its dazzlingly ornate homepage design is filled<br/> with intricate patterns and details, which are balanced out by <br/>
