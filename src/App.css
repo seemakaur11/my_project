@@ -1,0 +1,324 @@
+:root {
+  --mainBlue: #2a2a72;
+  --lightBlue: #009ffd;
+  --mainWhite: #f3f3f3;
+  --mainDark: #232528;
+  --mainYellow: #ffa400;
+}
+
+body {
+  font-family: 'Oswald', sans-serif !important;
+  background: var(--mainWhite) !important;
+  color: var(--mainDark) !important;
+}
+
+.text-title {
+  font-family: 'Permanent Marker', cursive;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+}
+
+.text-blue {
+  color: var(--mainBlue);
+}
+
+.text-bright {
+  color: var(--lightBlue);
+}
+
+.btn-black {
+  background: transparent;
+  text-transform: capitalize;
+  font-size: 0.8rem !important;
+  color: var(--mainBlack);
+  border-radius: 0 !important;
+  border: 0.1rem solid var(--mainDark) !important;
+}
+.btn-black:hover {
+  background: var(--mainDark) !important;
+  color: var(--mainWhite) !important;
+}
+.cart-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--mainYellow);
+}
+.imageLogo{
+  height: 45px;
+  width: 50px;
+   border-radius: 100%;
+}
+
+.structure features-link{
+  text-align: center;
+}
+.buttonDark{
+  font-size: 19px;
+  width: 100%;
+  font-weight: 600;
+  height: 50px;
+  line-height: 50px;
+  border: none;
+  background-color: darkorange;
+  margin-left: 37%;
+  width: 250px;
+  border-radius: 5px;
+  margin-top: 18px;
+  color: white;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 34%);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor: pointer;
+}
+
+.img1{
+  width: 340px;
+  height: 270px;
+  padding: 23px;
+  
+}
+.container {
+  margin-top: 37px;
+
+}
+.mobileApp{
+  width: 100%;
+  height: 580px;
+}
+.h1Img{
+  font-size: 19px;
+    text-align: center;
+    margin-top: -10px;
+    color: orangered;
+    letter-spacing: 1px;
+}
+.pImg {
+  color: 1px solid #d9d9d9;
+  text-align: center;
+  letter-spacing: 1px;
+
+}
+.featuresLink{
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+  font-family: system-ui;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.phoneImg{
+  width: 230px;
+  height: 239px;
+  margin-top: 261px;
+  z-index: 1;
+  margin-left: 143px;
+  position: absolute;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 34%);
+}
+.phoneImg8{
+  height: 182px;
+    width: 230px;
+    margin-left: 143px;
+    position: absolute;
+    z-index: 1;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    margin-top: 82px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 34%);
+}
+.phoneImg1{
+  width: 337px;
+  height: 500px;
+  margin-left: -86px;
+  margin-top: -1px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.phoneImg2{
+  width: 337px;
+    margin-top: -1px;
+    height: 500px;
+    border-top-left-radius: 25px;
+    margin-left: -43px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.facebook1 {
+  padding-bottom: 57px;
+  margin-top: 15px;
+  width: 73%;
+  margin-left: 37%;
+  font-size: 30px;
+ }
+ .twitter{
+  padding-bottom: 57px;
+  margin-top: 15px;
+  width: 73%;
+  margin-left: 2%;
+  font-size: 30px;
+ }
+ .instagram{
+  padding-bottom: 57px;
+  margin-top: 15px;
+  width: 73%;
+  margin-left: 2%;
+ 
+ }
+ .facebook {
+  margin-left: 80px;
+  margin-top: 15px;
+ }
+.explore{
+  text-align: center;
+}
+.paragraph {
+  font-size: 24px;
+  margin-top: 47px;
+  font-family: fantasy;
+  letter-spacing: 1px;
+}
+.footer{
+  margin-left: 435px;
+  float: left;
+  margin-bottom: 10px;
+  margin-right: -393px;
+ }
+.footer1{
+  margin-left: 107px;
+  float: left;
+  margin-right: -50px;
+}
+.bgImg{
+  background-image: url('../src/assets/images/home/bg1.png');
+  background-repeat: no-repeat;
+  width: 100%;
+}
+/* .bgColor{
+  background-color: #ffffff;
+} */
+.mainDiv{
+  background-color: #ffffff
+}
+/* .mobileFeatures{
+  background-color: red;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 800px;
+
+} */
+.mobParagraph{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 34px;
+  padding-top: 20px;
+  letter-spacing: 1px;
+  color: #C71585;
+}
+.paragraphPhoto{
+  font-size: 14px;
+    padding-bottom: 10px;
+    line-height: 22px;
+    margin-left: 33px;
+    margin-top: -10px;
+    letter-spacing: 1px;
+    font-family: 'Permanent Marker';
+}
+.features-container{
+  background-color: white;
+  box-shadow: 5px 10px #3333;
+  padding: 50px 20px;
+
+}
+.mobileFeatures {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  padding: 30px;
+}
+.container{
+  margin-left: 0px;
+}
+.mainContainer{
+  text-align: center;
+  cursor: pointer;
+}
+
+.mobData{
+  margin-right: 192px;
+  margin-top: 5px;
+}
+.mobDataPoco{
+  margin-right: 140px;
+  margin-top: 5px;
+}
+.mobDataRedmi{
+  margin-right: 166px;
+  margin-top: 5px;
+}
+.mobDataiQOO{
+  margin-right: 262px;
+  margin-top: 5px;
+
+}
+.mobDataPlus{
+  margin-right: 192px;
+  margin-top: 5px;
+}
+.mobDataPro{
+  margin-right: 157px;
+  margin-top: 5px;
+
+}
+.mobDataRealme{
+  margin-right: 231px;
+  margin-top: 5px;
+}
+.mobDataVivo{
+  margin-right: 213px;
+  margin-top: 5px;
+
+}
+.mobDataMax{
+  margin-right: 204px;
+  margin-top: 5px;
+
+}
+.mainFooter{
+  background-color:black;
+  color: aliceblue;
+  height: 250px;
+
+}
+
+.mainFooterHeading1{
+  margin-left: 24px;
+    padding: -4px;
+    margin-top: 62px;
+}
+
+.mainFooterHeading2{
+  margin-right: 672px;
+    padding: -4px;
+    margin-top: 62px;
+    margin-left: 16px;
+}
+li{
+  padding: 5px;
+  cursor: pointer;
+}
+
+.blog4Img{
+  height: 410px;
+  width: 275px;
+}
+.mainBlog{
+  background-color:white;
+}
+.wixBlog{
+  padding: 35px;
+    color: #FF1493;
+    font-family: 'Permanent Marker';
+}
+.h1WinBlog{
+  margin-left: 120px;
+  color: #9400D3;
+}
