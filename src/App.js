@@ -21,7 +21,7 @@ class App extends Component {
       <React.Fragment>
         <Navbar />
         <Switch>
-          <Route exact path="/" ><Home /></Route>
+          <Route exact path="/Home" ><Home /></Route>
           <Route exact path="/product" ><ProductList /></Route>
           <Route path="/details" component={Details}></Route>
           <Route path="/blog" component={Blog}></Route>
