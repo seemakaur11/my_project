@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
 
-export default class Address extends Component{
-    render(){
+import React from 'react'
+
+export default function Address(){
+  
         return(
             <div className="accountPage">
                 <div className="accountInform">
@@ -37,8 +38,12 @@ export default class Address extends Component{
                 </div>
                 <div>
                     <h2 className="shipBillAddress">I would like to pay with</h2>
+                    <input className="emailAccount" type='text' placeholder='Credit/Debit Card'/><br/>
+                    <input className="emailAccount" type='text' placeholder='Name'/><br/>
+                    <input className="emailAccount" type='text' placeholder='Card Number'/><br/>
+                    <input className="inputAccount" type='text' placeholder='Expiration'/>
+                    <input className="inputAccount1" type='text' placeholder='CVC'/>
                 </div>
             </div>
         )
     }
-}

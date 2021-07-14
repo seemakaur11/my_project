@@ -322,3 +322,63 @@ li{
   margin-left: 120px;
   color: #9400D3;
 }
+.accountPage{
+  background-color: white;
+}
+.h2MyAccount{
+   margin-left: 110px;
+    margin-top: 1px;
+    padding: 5px;
+    font-family: system-ui;
+    font-size: 40px;
+}
+.pParagraph{
+  margin-left: 110px;
+  margin-top: -11px;
+  font-size: 30px;
+  font-family: cursive;
+  font-weight: bold;
+}
+.shipBillAddress{
+  margin-left: 110px;
+  margin-top: 55px;
+  font-size: 30px;
+  font-family: cursive;
+  font-weight: bold;
+
+}
+.inputAccount{
+  margin-left: 110px;
+    width: 238px;
+    height: 52px;
+    padding: 24px;
+    border-radius: 3px;
+    outline: 0;
+    border: 1px solid #d9d9d9;
+    margin-top: 17px;
+}
+.inputAccount1{
+  margin-left: 0px;
+    width: 238px;
+    height: 52px;
+    padding: 24px;
+    border-radius: 3px;
+    outline: 0;
+    border: 1px solid #d9d9d9;
+}
+.emailAccount{
+   margin-left: 110px;
+    width: 474px;
+    height: 52px;
+    padding: 24px;
+    border-radius: 3px;
+    outline: 0;
+    border: 1px solid #d9d9d9;
+    margin-top: 17px;
+}
+.border1{
+  border: 1px solid #C0C0C0;
+  width: 474px;
+  margin-left: 110px;
+  margin-top: 42px;
+}

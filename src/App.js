@@ -13,6 +13,7 @@ import Home from './components/home/Home'
 import Features from './components/home/Features'
 import Footer from './components/home/Footer'
 import Blog from './components/home/Blog'
+import Address from './components/Address'
 
 
 class App extends Component {
@@ -21,11 +22,12 @@ class App extends Component {
       <React.Fragment>
         <Navbar />
         <Switch>
-          <Route exact path="/Home" ><Home /></Route>
+          <Route exact path="/" ><Home /></Route>
           <Route exact path="/product" ><ProductList /></Route>
           <Route path="/details" component={Details}></Route>
           <Route path="/blog" component={Blog}></Route>
           <Route path="/cart" component={Cart}></Route>
+          <Route path="/address" component={Address}></Route>
           <Route path="/features" component={Features}></Route>
           <Route component={Default}></Route>
         </Switch>

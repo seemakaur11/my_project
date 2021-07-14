@@ -1,11 +1,12 @@
 import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import PopUp from '../../common/PopUp'
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
-    background: #e0e0e0;
+
     border-raduis: 40px;
     display: flex;
     align-items: center;
@@ -13,7 +14,6 @@ const Container = styled.div`
     .btn {
         width: 130px;
         height: 45px;
-        background: #e0e0e0;
         outline: none;
         border: none;
         font-size: 18px;
@@ -78,32 +78,43 @@ const InputField = styled.div`
 
 function SignUp(props) {
     const { closePopUp, SignUpPopUp } = props
+    const [userRegister,setUserRegister] = useState({
+        'username': '',
+        "email": '',
+        'password':'',
+        'confirm_password':''
+    })
+    const handleInput = ()=>{
 
-    return (
+    }
+      return (
         <PopUp width={window.innerWidth < 468 ? 340 : 450} noPadding={true} onClose={() => closePopUp(false)}>
+            <form action=''>
             <Container>
                 <SignInForm>
                     <Title>Sign Up</Title>
                     <InputField>
                         <i className='fa fa-user' aria-hidden='true'></i>
-                        <input type='text' placeholder='Username' />
+                        <input type='text' placeholder='Username' onChange={handleInput}/>
                     </InputField>
                     <InputField>
                         <i className='fa fa-envelope' aria-hidden='true'></i>
-                        <input type='text' placeholder='Email' />
+                        <input type='text' placeholder='Email' onChange={handleInput}/>
                     </InputField>
                     <InputField>
                         <i className='fa fa-lock' aria-hidden='true'></i>
-                        <input type='password' placeholder='Password' />
+                        <input type='password' placeholder='Password' onChange={handleInput} />
                     </InputField>
                     <InputField>
                         <i className='fa fa-lock' aria-hidden='true'></i>
-                        <input type='password' placeholder='Confirm Password' />
+                        <input type='password' placeholder='Confirm Password' onChange={handleInput}/>
                     </InputField>
-                    <input type='submit' value='Sign Up' className='btn' />
+                    {/* <input type='submit' value='Sign Up' className='btn' /> */}
+                    <button type='submit' value='Sign Up' className='btn'>Sign Up</button>
                     <p>Already have an account? <span className='account-text' id='sign-in-link' onClick={() => SignUpPopUp(true)} >Sign In</span></p>
                 </SignInForm>
             </Container>
+            </form>
         </PopUp>
     )
 }

@@ -5,7 +5,7 @@ import PopUp from '../../common/PopUp'
 const Container = styled.div`
     width: 100%;
     height: 100%;
-    background: #e0e0e0;
+   
     border-raduis: 40px;
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@ const Container = styled.div`
     .btn {
         width: 130px;
         height: 45px;
-        background: #e0e0e0;
+
         outline: none;
         border: none;
         font-size: 18px;
