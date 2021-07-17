@@ -78,43 +78,72 @@ const InputField = styled.div`
 
 function SignUp(props) {
     const { closePopUp, SignUpPopUp } = props
-    const [userRegister,setUserRegister] = useState({
-        'username': '',
-        "email": '',
-        'password':'',
-        'confirm_password':''
+    const [userRegister, setUserRegister] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirm_password: ''
     })
-    const handleInput = ()=>{
+    const [records, setRecords] = useState([])
+    localStorage.setItem('setUserRegister', setUserRegister)
+    const handleInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setUserRegister({ ...userRegister, [name]: value })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newRecord = { ...userRegister, id: new Date().getTime().toString() }
+        setRecords([...records, newRecord]);
+        setUserRegister({ username: '', email: '', password: '', confirm_password: '' })
 
     }
-      return (
+
+    return (
         <PopUp width={window.innerWidth < 468 ? 340 : 450} noPadding={true} onClose={() => closePopUp(false)}>
-            <form action=''>
-            <Container>
-                <SignInForm>
-                    <Title>Sign Up</Title>
-                    <InputField>
-                        <i className='fa fa-user' aria-hidden='true'></i>
-                        <input type='text' placeholder='Username' onChange={handleInput}/>
-                    </InputField>
-                    <InputField>
-                        <i className='fa fa-envelope' aria-hidden='true'></i>
-                        <input type='text' placeholder='Email' onChange={handleInput}/>
-                    </InputField>
-                    <InputField>
-                        <i className='fa fa-lock' aria-hidden='true'></i>
-                        <input type='password' placeholder='Password' onChange={handleInput} />
-                    </InputField>
-                    <InputField>
-                        <i className='fa fa-lock' aria-hidden='true'></i>
-                        <input type='password' placeholder='Confirm Password' onChange={handleInput}/>
-                    </InputField>
-                    {/* <input type='submit' value='Sign Up' className='btn' /> */}
-                    <button type='submit' value='Sign Up' className='btn'>Sign Up</button>
-                    <p>Already have an account? <span className='account-text' id='sign-in-link' onClick={() => SignUpPopUp(true)} >Sign In</span></p>
-                </SignInForm>
-            </Container>
+            <form action='' onSubmit={handleSubmit}>
+                <Container>
+                    <SignInForm>
+                        <Title>Sign Up</Title>
+                        <InputField>
+                            <i className='fa fa-user' aria-hidden='true'></i>
+                            <input type='text' name='username' placeholder='Username' value={userRegister.username} onChange={handleInput} />
+                        </InputField>
+                        <InputField>
+                            <i className='fa fa-envelope' aria-hidden='true'></i>
+                            <input type='text' name='email' placeholder='Email' value={userRegister.email} onChange={handleInput} />
+                        </InputField>
+                        <InputField>
+                            <i className='fa fa-lock' aria-hidden='true'></i>
+                            <input type='password' name='password' placeholder='Password' value={userRegister.password} onChange={handleInput} />
+                        </InputField>
+                        <InputField>
+                            <i className='fa fa-lock' aria-hidden='true'></i>
+                            <input type='password' name='confirm_password' placeholder='Confirm Password' value={userRegister.confirm_password} onChange={handleInput} />
+                        </InputField>
+                        {/* <input type='submit' value='Sign Up' className='btn' /> */}
+                        <button type='submit' value='Sign Up' className='btn'>Sign Up</button>
+                        <p>Already have an account? <span className='account-text' id='sign-in-link' onClick={() => SignUpPopUp(true)} >Sign In</span></p>
+                    </SignInForm>
+                </Container>
             </form>
+            <div>
+                {
+                    records.map((currentEle) => {
+                        const { id, username, email, password, confirm_password } = currentEle;
+
+                        return (
+                            <div key={id}>
+                                <p>{username}</p>
+                                <p>{email}</p>
+                                <p>{password}</p>
+                                <p>{confirm_password}</p>
+                            </div>
+                        )
+
+                    })
+                }
+            </div>
         </PopUp>
     )
 }
