@@ -1,7 +1,11 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
 import PopUp from '../../common/PopUp'
+import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+
 
 const Container = styled.div`
     width: 100%;
@@ -75,8 +79,44 @@ const InputField = styled.div`
         outline: none;
         background: none;
 `
+var validate = values => {
+    console.log(" values ==============>",values)
+    var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+    console.log(" passwor expression =================>",pwd_expression)
+    const errors = {}
+    console.log("<---Errors---->",errors)
+    if(!values.username){
+        errors.username = 'Required'
+        console.log(" ERRORS ####### ------>",errors)
+    }
+    else if(values.username < 2) {
+        errors.username = 'Minimum be 2 characters or more'
+
+    }
+    if (!values.email) {
+        errors.email = 'Required'
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+      }
+      if(!values.password){
+          errors.password = 'Required'
+      } else if (!pwd_expression.test(values.password)){
+          errors.password = 'Invalid Password'
+      }
+      if(!values.confirm_password){
+        errors.password = 'Required'
+    }
+   if(values.password !== values.confirm_password){
+    errors.confirm_password = 'Password not match'
+   }
+   return errors
+
+}
+
+
 
 function SignUp(props) {
+    const { handleSubmit, pristine, reset, submitting } = props
     const { closePopUp, SignUpPopUp } = props
     const [userRegister, setUserRegister] = useState({
         username: '',
@@ -91,14 +131,25 @@ function SignUp(props) {
         const value = e.target.value;
         setUserRegister({ ...userRegister, [name]: value })
     }
-    const handleSubmit = (e) => {
+     handleSubmit = (e) => {
         e.preventDefault();
         const newRecord = { ...userRegister, id: new Date().getTime().toString() }
         setRecords([...records, newRecord]);
         setUserRegister({ username: '', email: '', password: '', confirm_password: '' })
 
     }
-
+    useEffect(()=>{
+        localStorage.setItem('userData',JSON.stringify(records))
+    })
+    const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+        <div>
+          <label className="control-label">{label}</label>
+          <div>
+            <input {...input} placeholder={label} type={type} className="form-control" />
+            {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
+          </div>
+        </div>
+      )
     return (
         <PopUp width={window.innerWidth < 468 ? 340 : 450} noPadding={true} onClose={() => closePopUp(false)}>
             <form action='' onSubmit={handleSubmit}>
@@ -119,7 +170,7 @@ function SignUp(props) {
                         </InputField>
                         <InputField>
                             <i className='fa fa-lock' aria-hidden='true'></i>
-                            <input type='password' name='confirm_password' placeholder='Confirm Password' value={userRegister.confirm_password} onChange={handleInput} />
+                            <input type='password' name='confirm_password' placeholder='Confirm Password' value={userRegister.confirm_password} onChange={handleInput}  />
                         </InputField>
                         {/* <input type='submit' value='Sign Up' className='btn' /> */}
                         <button type='submit' value='Sign Up' className='btn'>Sign Up</button>
@@ -127,25 +178,10 @@ function SignUp(props) {
                     </SignInForm>
                 </Container>
             </form>
-            <div>
-                {
-                    records.map((currentEle) => {
-                        const { id, username, email, password, confirm_password } = currentEle;
-
-                        return (
-                            <div key={id}>
-                                <p>{username}</p>
-                                <p>{email}</p>
-                                <p>{password}</p>
-                                <p>{confirm_password}</p>
-                            </div>
-                        )
-
-                    })
-                }
-            </div>
         </PopUp>
     )
 }
-
-export default SignUp
+export default reduxForm({
+    form: 'SignUp', // a unique identifier for this form
+    validate
+  })(SignUp)

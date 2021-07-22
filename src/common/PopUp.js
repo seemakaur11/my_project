@@ -60,15 +60,15 @@ class PopUp extends Component {
         this.winWrapper = React.createRef()
     }
 
-    componentDidMount = () => {
-        document.addEventListener('mousedown', this.handleClickOutside)
-        document.addEventListener('keydown', this.handleKeyDown)
-    }
+    // componentDidMount = () => {
+    //     document.addEventListener('mousedown', this.handleClickOutside)
+    //     document.addEventListener('keydown', this.handleKeyDown)
+    // }
 
-    componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClickOutside)
-        document.removeEventListener('keydown', this.handleKeyDown)
-    }
+    // componentWillUnmount() {
+    //     document.removeEventListener('mousedown', this.handleClickOutside)
+    //     document.removeEventListener('keydown', this.handleKeyDown)
+    // }
 
     handleClickOutside = event => {
         const { closeOnOutSideClick } = this.props;
