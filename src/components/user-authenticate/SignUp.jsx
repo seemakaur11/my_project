@@ -3,8 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
 import PopUp from '../../common/PopUp'
-import { Field, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
+import { auth, createUserProfileDocument } from '../../Firebase'
 
 
 const Container = styled.div`
@@ -79,44 +78,8 @@ const InputField = styled.div`
         outline: none;
         background: none;
 `
-var validate = values => {
-    console.log(" values ==============>",values)
-    var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
-    console.log(" passwor expression =================>",pwd_expression)
-    const errors = {}
-    console.log("<---Errors---->",errors)
-    if(!values.username){
-        errors.username = 'Required'
-        console.log(" ERRORS ####### ------>",errors)
-    }
-    else if(values.username < 2) {
-        errors.username = 'Minimum be 2 characters or more'
-
-    }
-    if (!values.email) {
-        errors.email = 'Required'
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
-      }
-      if(!values.password){
-          errors.password = 'Required'
-      } else if (!pwd_expression.test(values.password)){
-          errors.password = 'Invalid Password'
-      }
-      if(!values.confirm_password){
-        errors.password = 'Required'
-    }
-   if(values.password !== values.confirm_password){
-    errors.confirm_password = 'Password not match'
-   }
-   return errors
-
-}
-
-
 
 function SignUp(props) {
-    const { handleSubmit, pristine, reset, submitting } = props
     const { closePopUp, SignUpPopUp } = props
     const [userRegister, setUserRegister] = useState({
         username: '',
@@ -125,37 +88,69 @@ function SignUp(props) {
         confirm_password: ''
     })
     const [records, setRecords] = useState([])
-    localStorage.setItem('setUserRegister', setUserRegister)
+
     const handleInput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         setUserRegister({ ...userRegister, [name]: value })
     }
-     handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const newRecord = { ...userRegister, id: new Date().getTime().toString() }
         setRecords([...records, newRecord]);
         setUserRegister({ username: '', email: '', password: '', confirm_password: '' })
 
+    /** APPLY VALIDATION */
+        if(userRegister.username === ""){ 
+            alert('Username is required') 
+             return 
+            }
+        else if(!/^[A-Za-z]+$/i.test(userRegister.username)){
+           alert('Only alphabet characters are allowed')
+           return 
+        }
+        if(userRegister.email === ""){ alert('Email is required')
+        return 
+    }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(userRegister.email)) {
+             alert('Invalid email address')
+             return 
+        }
+        if(userRegister.password === ""){ alert('Password is required')
+        return 
+    }
+        else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/i.test(userRegister.password)) {
+            alert('Invalid Password')
+            return 
+        }
+        if(userRegister.confirm_password === ""){ 
+            alert('Confirm password is required')
+           return 
+    }
+       else if (userRegister.password !== userRegister.confirm_password) {
+          alert('Password not match')
+          return 
+        }
+
+        /** use firebase database */
+       const { user } = auth.createUserWithEmailAndPassword(userRegister.email,userRegister.password)
+        .then(()=>{
+            alert("create user successfully")
+            createUserProfileDocument(user, (userRegister.username));
+        }).catch((error)=>{
+            alert(`Error --> ${error.message} ErrorCode -->${400}`)
+        })
     }
     useEffect(()=>{
         localStorage.setItem('userData',JSON.stringify(records))
     })
-    const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-        <div>
-          <label className="control-label">{label}</label>
-          <div>
-            <input {...input} placeholder={label} type={type} className="form-control" />
-            {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
-          </div>
-        </div>
-      )
+
     return (
         <PopUp width={window.innerWidth < 468 ? 340 : 450} noPadding={true} onClose={() => closePopUp(false)}>
-            <form action='' onSubmit={handleSubmit}>
                 <Container>
                     <SignInForm>
                         <Title>Sign Up</Title>
+            <form action='' onSubmit ={handleSubmit}>
                         <InputField>
                             <i className='fa fa-user' aria-hidden='true'></i>
                             <input type='text' name='username' placeholder='Username' value={userRegister.username} onChange={handleInput} />
@@ -175,13 +170,10 @@ function SignUp(props) {
                         {/* <input type='submit' value='Sign Up' className='btn' /> */}
                         <button type='submit' value='Sign Up' className='btn'>Sign Up</button>
                         <p>Already have an account? <span className='account-text' id='sign-in-link' onClick={() => SignUpPopUp(true)} >Sign In</span></p>
+            </form>
                     </SignInForm>
                 </Container>
-            </form>
         </PopUp>
-    )
+    )     
 }
-export default reduxForm({
-    form: 'SignUp', // a unique identifier for this form
-    validate
-  })(SignUp)
+export default SignUp;

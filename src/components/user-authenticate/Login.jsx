@@ -1,6 +1,8 @@
 import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import PopUp from '../../common/PopUp'
+import  { auth } from '../../Firebase'
 
 const Container = styled.div`
     width: 100%;
@@ -82,18 +84,48 @@ const ForgotPAssword = styled.div`
 
 function LoginPopup(props) {
     const { closePopUp, SignUpPopUp } = props
+    const [userLogin, setUserLogin] = useState({
+        email: '',
+        password: '',
+    })
+    const handleInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setUserLogin({ ...userLogin, [name]: value })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setUserLogin({ email: '', password: '' })
+
+        /** APPLY VALIDATION */
+        if(userLogin.email === ""){
+            alert('You must enter email address');
+            return;
+          }else if(userLogin.password ===""){
+            alert('You must enter password');
+            return;
+          }
+        /** USE FIREBASE DATABASE */
+        auth.signInWithEmailAndPassword(userLogin.email,userLogin.password)
+       .then(()=>{
+            alert(" user logged in successfully")
+        }).catch((error)=>{
+            alert(`Error --> ${error.message} ErrorCode -->${400}`)
+        })
+    }
     return (
         <PopUp width={window.innerWidth < 468 ? 340 : 450} noPadding={true} onClose={() => closePopUp(false)}>
             <Container>
                 <SignInForm>
                     <Title>Sign In</Title>
+                    <form onSubmit={handleSubmit}>
                     <InputField>
                         <i className='fa fa-user'></i>
-                        <input type='text' placeholder='Username' />
+                        <input type='text' name="email" placeholder='email' value ={userLogin.email} onChange={handleInput}/>
                     </InputField>
                     <InputField>
                         <i className='fa fa-lock'></i>
-                        <input type='password' placeholder='Password' />
+                        <input type='password' name="password" placeholder='Password' value ={userLogin.password} onChange={handleInput}/>
                     </InputField>
                     <ForgotPAssword>
                         <a href='/'>Forgot Password</a>
@@ -101,6 +133,7 @@ function LoginPopup(props) {
                     <input type='submit' value='login' className='btn' />
                     {/* <p>Don`t have an account? <a href='#' className='account-text' id='sign-in-link' onClick={() => SignUpPopUp(false)}>Sign Up</a></p> */}
                     <p>Don`t have an account? <span  className='account-text' id='sign-in-link' onClick={() => SignUpPopUp(false)}>Sign Up</span></p>
+                    </form>
                 </SignInForm>
             </Container>
         </PopUp >
